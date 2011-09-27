@@ -1,0 +1,24 @@
+%hr.space
+.span-3
+  .icons.icons_messages
+  - num_unread_msgs =  3
+  %a{:href => '/messages/inbox'} Messages 
+  - if num_unread_msgs > 0
+    (#{num_unread_msgs})
+    
+.span-3
+  .icons.icons_event
+  %a{:href => '/events'} Events
+.span-3
+  .icons.icons_photo
+  %a{:href => '/albums'} Photos
+.span-3
+  .icons.icons_pages
+  %a{:href => '/user/pages'} Pages
+.span-3
+  .icons.icons_group
+  %a{:href => '/groups'} Groups        
+.span-3
+  .icons.icons_friends
+  %a{:href => '/users'} Contacts
+%hr.space

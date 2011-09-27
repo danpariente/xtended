@@ -1,0 +1,29 @@
+class HomeController < ApplicationController
+  def show
+    if current_user
+      #redirect_to :controller => 'aspects', :action => 'index'
+      #:controller => 'pages', :action => 'index' 
+      redirect_to user_path(current_user.id)
+    else
+      @landing_page = true
+      render :show
+    end
+  end
+  
+  def after_login
+  	user = current_user 
+    if user.new_record?
+      photo = user[:photo].nil? ? "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user[:email])}" : user[:photo] 
+      unless user.update_attributes({ :username => user[:username].hash.to_s(36), :email => user[:email], :photo_url => photo })
+        flash[:error] = user.errors.values.join(",")
+        redirect_to root_url
+      end      
+      session[:user_id] = user.id
+      redirect_to edit_user_path(current_user.id)	
+    else
+      session[:user_id] = user.id
+      redirect_to root_url  
+    end  	  
+  end
+
+end

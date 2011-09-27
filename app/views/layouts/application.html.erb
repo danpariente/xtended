@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag "blueprint/screen.css",
+     "blueprint/plugins/fancy-type/screen.css", "additional", "datepicker", "uniform.default", "uniform.agent", "jquery-ui" %>
+    <%= javascript_include_tag "application", "jquery", "jquery-1.6.2", "jquery-ui.min", "jquery_ujs", "jquery.uniform.min", "jquery.min" %>
+    <%#= javascript_include_tag "http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" %>
+    <%= javascript_include_tag :defaults %>
+    <%= include_tiny_mce_if_needed %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="container">
+     
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

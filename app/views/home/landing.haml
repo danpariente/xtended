@@ -1,0 +1,26 @@
+=render 'top'
+
+.span-24.last
+  .span-3
+    %img.span-3{:src => "#{@user.photo_url}"}
+    =render 'links'    
+    
+    %h3 Groups
+    =render '/mini_groups'
+    %h3 Friends
+    =render :partial => 'mini_friends', :locals => {:user => @user}
+  .span-15
+    
+    %h3 News feed
+    =render 'update_box'
+    %hr.space
+    =render 'feeds'
+  
+  .span-6.last
+    %h3 Requests
+    =render 'mini_requests'
+    %h3 Reach out
+    =#render 'mini_invite'    
+    %h3 Events
+    =render 'mini_events'    
+%hr.space
