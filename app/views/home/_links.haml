@@ -1,7 +1,7 @@
 %hr.space
 .span-3
   .icons.icons_messages
-  - num_unread_msgs =  3
+  - num_unread_msgs =  @user.received_messages.where(:opened => false).size
   %a{:href => '/messages/inbox'} Messages 
   - if num_unread_msgs > 0
     (#{num_unread_msgs})

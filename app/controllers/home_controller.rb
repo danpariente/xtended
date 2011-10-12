@@ -6,8 +6,14 @@ class HomeController < ApplicationController
       redirect_to user_path(current_user.id)
     else
       @landing_page = true
+      #@user = User.new(:username => Digest::MD5.hexdigest(Time.now.to_s))
+      #render :landing
       render :show
     end
+  end
+  
+  def landing 
+    @user = current_user	
   end
   
   def after_login

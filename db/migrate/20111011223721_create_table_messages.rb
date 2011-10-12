@@ -1,4 +1,4 @@
-class CreateMessages < ActiveRecord::Migration
+class CreateTableMessages < ActiveRecord::Migration
   def self.up
     create_table :messages do |t|
      t.string :topic
@@ -20,7 +20,7 @@ class CreateMessages < ActiveRecord::Migration
       # ancestry
       t.string :ancestry
     end
-    add_index :messages, [:sent_messageable_id, :received_messageable_id], :name => "acts_as_messageable_ids"
+    #add_index :messages, [:sent_messageable_id, :received_messageable_id], :name => "acts_as_messageable_ids"
     add_index :messages, :ancestry
   end
 

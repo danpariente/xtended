@@ -6,13 +6,13 @@
     =render 'links'    
     
     %h3 Groups
-    =render '/mini_groups'
+    =render 'users/groups'
     %h3 Friends
-    =render :partial => 'mini_friends', :locals => {:user => @user}
+    =render :partial => 'users/mini_friends', :locals => {:user => @user}
   .span-15
     
     %h3 News feed
-    =render 'update_box'
+    =render 'users/update_box'
     %hr.space
     =render 'feeds'
   

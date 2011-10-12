@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926145542) do
+ActiveRecord::Schema.define(:version => 20111011223721) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -120,13 +120,28 @@ ActiveRecord::Schema.define(:version => 20110926145542) do
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "subject"
-    t.text     "text"
-    t.boolean  "read"
-    t.integer  "thread"
+    t.string   "topic"
+    t.text     "body"
+    t.integer  "received_messageable_id"
+    t.string   "received_messageable_type"
+    t.integer  "sent_messageable_id"
+    t.string   "sent_messageable_type"
+    t.boolean  "opened",                     :default => false
+    t.boolean  "recipient_delete",           :default => false
+    t.boolean  "sender_delete",              :default => false
+    t.boolean  "recipient_permanent_delete", :default => false
+    t.boolean  "sender_permanent_delete",    :default => false
+    t.boolean  "r_hidden"
+    t.boolean  "s_hidden"
+    t.string   "recipient"
+    t.integer  "recipient_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
   end
+
+  add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -156,9 +171,42 @@ ActiveRecord::Schema.define(:version => 20110926145542) do
     t.datetime "updated_at"
   end
 
+  create_table "private_messages", :force => true do |t|
+    t.string   "topic"
+    t.text     "body"
+    t.integer  "received_messageable_id"
+    t.string   "received_messageable_type"
+    t.integer  "sent_messageable_id"
+    t.string   "sent_messageable_type"
+    t.boolean  "opened",                     :default => false
+    t.boolean  "recipient_delete",           :default => false
+    t.boolean  "sender_delete",              :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+    t.boolean  "recipient_permanent_delete", :default => false
+    t.boolean  "sender_permanent_delete",    :default => false
+    t.boolean  "r_hidden"
+    t.boolean  "s_hidden"
+    t.string   "recipient"
+    t.integer  "recipient_id"
+    t.integer  "user_id"
+  end
+
+  add_index "private_messages", ["ancestry"], :name => "index_private_messages_on_ancestry"
+  add_index "private_messages", ["sent_messageable_id", "received_messageable_id"], :name => "acts_as_messageable_ids"
+
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "replies", :force => true do |t|
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "message_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -608,3 +608,9 @@ div.uploader input {
   border: none;
   cursor: default;
 }
+
+/***********************************************/
+#nonstyle {
+  style :none;	
+  /*color: #0000FF;*/
+}

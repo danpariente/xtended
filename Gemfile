@@ -15,6 +15,7 @@ gem 'tiny_mce'
 gem "ckeditor", "~> 3.6.1"
 gem 'haml'
 gem 'activeadmin'
+gem 'acts-as-messageable'
 
 # Use unicorn as the web server
 # gem 'unicorn'

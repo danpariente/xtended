@@ -1,4 +1,15 @@
 Jobster::Application.routes.draw do
+	
+  resources :messages do 
+  	collection do 
+  	  get :all
+  	  get :inbox
+  	  get :sentbox
+  	  get :trash
+  	end
+  	resources :replies
+  end
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -8,7 +19,7 @@ Jobster::Application.routes.draw do
   get "home/show"
 
   resources :pages
-  resources :users
+  resources :users    
   devise_for :users
   devise_for :users, :path => "/", :path_names => 
   { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }

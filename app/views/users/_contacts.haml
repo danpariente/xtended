@@ -3,10 +3,10 @@
 - else 
   - @user.friendships[0..11].each do |f|
     %a{:href => "/user/#{f.friend.username}"}
-      %img.span-1{:src => "#{f.friend.photo_url.nil? ? "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email)}" : f.friend.photo_url }"}
+      %img.span-1{:src => "#{f.friend.photo_url.nil? ? "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(f.friend.email)}" : f.friend.photo_url }"}
 
 %hr.space    
 - if @user == current_user
   %a{:href => "/users"} view all
 - else
-  %a{:href => "/user/#{user.id}"} view all
+  %a{:href => "/user/#{@user.id}"} view all

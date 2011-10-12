@@ -7,7 +7,7 @@
     =render :partial => '/home/links'
     =render :partial => 'contacts'
     %br
-    = link_to "Add Me", friendships_path(:friend_id => @user), :method => :post 
+    = button_to "Add Me", friendships_path(:friend_id => @user), :method => :post 
   .span-21.last
     
     %h3 Contacts
@@ -25,7 +25,6 @@
     %ul
       - for user in @user.inverse_friends 
         %li= h user.username 
-    
   
     %h3 Change your profile here
     %form{:method => 'get', :action => 'update' }
@@ -82,4 +81,4 @@
         %textarea.span-10{:name => 'education'}#{@user.education}
 
       .span-2.prepend-13
-        %input{:type => 'submit', :value => 'save profile'}
+        %input{:type => 'submit', :value => 'save'}
