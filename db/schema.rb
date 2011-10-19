@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011223721) do
+ActiveRecord::Schema.define(:version => 20111019000131) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20111011223721) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "admin_users", :force => true do |t|
@@ -78,11 +79,15 @@ ActiveRecord::Schema.define(:version => 20111011223721) do
   create_table "confirms", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "event_id"
   end
 
   create_table "declines", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "event_id"
   end
 
   create_table "events", :force => true do |t|
@@ -93,6 +98,10 @@ ActiveRecord::Schema.define(:version => 20111011223721) do
     t.time     "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "wall_id"
+    t.string   "invites"
+    t.string   "attendance"
   end
 
   create_table "friendships", :force => true do |t|
@@ -149,11 +158,16 @@ ActiveRecord::Schema.define(:version => 20111011223721) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "group_id"
   end
 
   create_table "pendings", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "event_id"
   end
 
   create_table "photos", :force => true do |t|
@@ -169,6 +183,8 @@ ActiveRecord::Schema.define(:version => 20111011223721) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "wall_id"
   end
 
   create_table "private_messages", :force => true do |t|

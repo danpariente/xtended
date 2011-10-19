@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   
+  has_many :confirms
+  has_many :confirmed_events, :through => :confirms, :class_name => 'Event', :foreign_key => 'user_id'#, :date.gte => Date.today 
+  has_many :pendings
+  has_many :pending_events, :through => :pendings, :class_name => 'Event', :foreign_key => 'user_id'#, :date.gte => Date.today 
+  
   #has_many :messages
   #has_many :sent_messages, :class_name => 'Message', :foreign_key => 'user_id'
   #has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id'
@@ -39,5 +44,46 @@ class User < ActiveRecord::Base
 
   def sent
     Message.where(:s_hidden=>false).order("created_at DESC")
+  end
+  
+  def feed
+    feed = [] + activities
+    friends.each do |friend|
+      feed += friend.activities
+    end
+    return feed.sort {|x,y| y.created_at <=> x.created_at}
+  end
+
+  def possessive_pronoun
+    sex.downcase == 'male' ? 'his' : 'her'
+  end
+  
+  def pronoun
+    sex.downcase == 'male' ? 'he' : 'she'
+  end
+  
+  def create_wall
+    self.wall = Wall.create
+    self.save
+  end
+  
+  def all_events
+    self.confirmed_events + self.pending_events
+  end
+
+  def friend_events
+    events = []
+    friends.each do |friend|
+      events += friend.confirmed_events
+    end
+    return events.sort {|x,y| y.time <=> x.time}    
+  end
+  
+  def friend_groups
+    groups = []
+    friends.each do |friend|
+      groups += friend.groups
+    end
+    groups - self.groups
   end
 end

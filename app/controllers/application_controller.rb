@@ -5,4 +5,16 @@ class ApplicationController < ActionController::Base
   	flash[:error] = "Access Denied"
   	redirect_to root_url
   end
+
+=begin  
+  private
+	
+    def current_event
+	  Event.find(session[:event_id])
+	  rescue ActiveRecord::RecordNotFound
+	    cart = Event.create
+	    session[:event_id] = event.id
+	    event
+	end
+=end  
 end

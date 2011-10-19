@@ -1,5 +1,8 @@
 class Message < ActiveRecord::Base
   #set_table_name "private_messages"	
+  
+  #default_scope :order => 'created_at DESC'
+  
   belongs_to :user	
   belongs_to :sender, :class_name => 'User', :foreign_key  => :user_id
   belongs_to :recipient, :class_name => 'User', :foreign_key  => :recipient_id

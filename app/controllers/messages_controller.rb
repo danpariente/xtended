@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
   
   def destroy
     @message = Message.find(params[:id])
-    @message.delete
+    @message.delete # TODO nullify messages
     #@message.hide_for_user(current_user)
     redirect_to :back
   end
