@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019000131) do
+ActiveRecord::Schema.define(:version => 20111024123112) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -161,6 +161,8 @@ ActiveRecord::Schema.define(:version => 20111019000131) do
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "group_id"
+    t.integer  "pageable_id"
+    t.string   "pageable_type"
   end
 
   create_table "pendings", :force => true do |t|

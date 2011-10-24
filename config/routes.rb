@@ -1,10 +1,16 @@
 Jobster::Application.routes.draw do
-  resources :pages, :users, :friendships	
+  resources :pages, :friendships
+  resources :posts, :only => [:create, :destroy] 	
   get "home/show"
+  
+  resources :users do 
+  	resources :pages
+  end
   
   resources :events do
   	get :add, :on => :collection
   	put :assistance, :on => :collection
+  	#post :page, :on => :collection
   	resources :pages
   end 	
   resource :event
@@ -34,7 +40,10 @@ Jobster::Application.routes.draw do
   match '/user/:username',
             :controller => 'users',
             :action => 'show_by_username' 
-            
+  
+  match '/pages',
+            :controller => 'pages',
+            :action => 'index'                         
             
   root :to => "home#show"            
 

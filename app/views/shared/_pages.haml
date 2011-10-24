@@ -1,8 +1,7 @@
-- if owner.pages.empty?
-  #{owner.formatted_name} has no pages.
+- if @user.pages.empty?
+  #{@user.formatted_name} has no pages.
 %ul
-  - owner.pages.each do |page|
+  - @user.pages.each do |page|
     %li 
-      %a{:href => "/#{owner_name}/page/#{page.id}"}#{page.title}
-      - if page.event
-        %a{:href => "/event/#{page.event.id}"} (#{page.event.name})
+      %a{:href => "/pages/#{page.id}"}#{page.title}
+      

@@ -6,4 +6,4 @@
   %ul
   - @user.confirmed_events.each do |event|
     %li{:style => 'margin-left: 1.3em;'}
-      %a{:href => "/event/#{event.id}"} #{event.name}
+      %a{:href => "/events/#{event.id}"} #{event.name}

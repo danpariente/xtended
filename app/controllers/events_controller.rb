@@ -31,6 +31,15 @@ class EventsController < ApplicationController
   	@page = Page.find(params[:id])
   	# {:locals  =>  {:owner  => 'event'}} 
   end
+   
+  def page 
+    @user = current_user
+    #@page = Page.new
+    
+    @page = current_event.pages.build(params[:event]) 
+    #@event = Event.find(params[:event_id])
+    #render :controller => 'page', :action => 'new'	
+  end
   
   # EVENTS
   	
@@ -41,6 +50,8 @@ class EventsController < ApplicationController
 
   def show
   	@user = current_user
+  	@post = Post.new if @user
+  	@page = Page.new if @user
   	@event = Event.find(params[:id])
   end
 
@@ -51,9 +62,8 @@ class EventsController < ApplicationController
 
   def create
   	@content = params[:event] || {}
-    #@event = Event.create(:name => params[:name], :description => params[:description], :venue => params[:venue], :date => params[:date], :time => params[:date] + " " + params[:time], :user_id  => current_user.id)	
     @event = Event.new(params[:event])
-    if @event.save #and params[:invites]
+    if @event.save 
       users = @content['invites'].split(',')
       users.each do |user|
         invitee = User.find_by_username(user.strip)
@@ -100,34 +110,12 @@ class EventsController < ApplicationController
     redirect_to '/events'
   end
   
-  def post_wall 
-    Post.create(:text => params[:status], :user => current_user, :wall_id => params[:wall_id])
-    #redirect "/event/#{params[:event]}"   	    
-    redirect_to :back
+  def post_wall
+  	@user = current_user
+  	#@post = Post.new(params[:event])
+    Post.create(:text => params[:status], :user_id => params[:user_id], :wall_id => params[:wall_id])
+    redirect_to :back #if @post.save	    
+    #render :action => 'show'
   end
-  
-  def assistance
-  	@user = current_user 
-  	#@content = params[:event] || {}
-    @event = Event.find(params[:id])
-    case params[:attendance] # not sure
-      when 'yes'
-        Pending.first(:user_id => @user.id, :event_id => @event['id']).destroy if @event.pending_users.include? @user
-        Decline.first(:user_id => @user.id, :event_id => @event['id']).destroy if @event.declined_users.include? @user
-        Confirm.create(:confirmed_event => @event, :confirmed_user => @user)
-      when 'no'
-
-        Confirm.first(:user_id => @user.id, :event_id => @event['id']).destroy if @event.confirmed_users.include? @user
-        Pending.first(:user_id => @user.id, :event_id => @event['id']).destroy if @event.pending_users.include? @user
-        Decline.create(:declined_user => @user, :declined_event => @event) 
-      when 'maybe'
-        Confirm.first(:user_id => @user.id, :event_id => event.id).destroy if @event.confirmed_users.include? @user
-        Decline.first(:user_id => @user.id, :event_id => event.id).destroy if @event.declined_users.include? @user
-        Pending.create(:pending_user => @user, :pending_event => @event) 
-      end
-      # redirect "/event/#{event.id}"  
-      redirect_to :back
-  end
-
 
 end

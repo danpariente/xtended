@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   	redirect_to root_url
   end
 
-=begin  
+
   private
 	
     def current_event
@@ -16,5 +16,5 @@ class ApplicationController < ActionController::Base
 	    session[:event_id] = event.id
 	    event
 	end
-=end  
+
 end

@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :user
   belongs_to :wall
-  has_many :pages
+  has_many :pages, :as  => :pageable
   has_many :confirms
   has_many :confirmed_users, :through => :confirms, :class_name => 'User', :foreign_key => 'event_id'#, :mutable => true
   has_many :pendings
@@ -20,6 +20,6 @@ class Event < ActiveRecord::Base
   end
 
   def add_activity
-    #Activity.create(:user => self.user, :activity_type => 'event', :text => "<a href='/user/#{self.username}'>#{self.formatted_name}</a> created a new event - <a href='/event/#{self.id}'>#{self.name}</a>.")
+    Activity.create(:user => self.user, :activity_type => 'event', :text => "<a href='/user/#{self.username}'>#{self.formatted_name}</a> created a new event - <a href='/event/#{self.id}'>#{self.name}</a>.")
   end	
 end

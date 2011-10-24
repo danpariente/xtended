@@ -2,9 +2,9 @@
   margin-bottom: 1em;
 }
 */
-/*textarea.update {
+textarea.update {
   height: auto;
-}
+}/*
 #button {
   background-image:url(/round-btn.gif);
   border:0 none;
@@ -218,12 +218,12 @@ h1 {font-size:4.2em;line-height:1;margin-bottom:0.5em;color:#404040;}
 h2 {font-size:1.2em;margin-bottom:0.75em;}
 
 #container {
-  width: 85%;*/
-  margin: 0 auto;
+  /*width: 85%;*/
+  /*margin: 0 auto;
   background-color: #FFF;
-  padding: 20px 40px;*/
+  /*padding: 20px 40px; */
   /*border: solid 1px black;*/
-  /**margin-top: 20px;*/
+  margin-top: 0px;*/
 }
 
 #flash_notice, #flash_error, #flash_alert {
