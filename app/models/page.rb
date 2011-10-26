@@ -1,6 +1,7 @@
 class Page < ActiveRecord::Base
-  #has_many :comments	
-  has_many :likes
+  include Commentable 	
+  has_many :comments, :as => :commentable		
+  has_many :likes, :as => :likeable
   #belongs_to :user
   #belongs_to :event
   #belongs_to :group

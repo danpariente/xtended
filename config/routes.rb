@@ -1,7 +1,18 @@
 Jobster::Application.routes.draw do
-  resources :pages, :friendships
-  resources :posts, :only => [:create, :destroy] 	
+  
+  resources :friendships, :memberships, :comments, :likes
+  
+  resources :posts, :only => [:create, :destroy] do 
+  	resources :comments
+  	resources :likes
+  end 
+  	
   get "home/show"
+  
+  resources :pages do 
+  	resources :comments
+  	resources :likes
+  end
   
   resources :users do 
   	resources :pages
@@ -13,7 +24,10 @@ Jobster::Application.routes.draw do
   	#post :page, :on => :collection
   	resources :pages
   end 	
-  resource :event
+  
+  resources :groups do 
+  	resources :pages
+  end
   
   resources :messages do 
   	collection do 

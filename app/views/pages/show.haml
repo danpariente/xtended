@@ -10,7 +10,7 @@
     
     %hr.space
     
-    =#render '/shared/comment_and_like', {:locals => {:item => @page}}
+    =render :partial => '/shared/comment_and_like', :locals => {:commentable => @page}
 
     
   .span-6.last

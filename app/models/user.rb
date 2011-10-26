@@ -11,8 +11,11 @@ class User < ActiveRecord::Base
   has_many :pending_events, :through => :pendings, :class_name => 'Event', :foreign_key => 'user_id'#, :date.gte => Date.today 
   
   has_many :posts
-  #has_many :pages, :as  => :pageable
+  has_many :comments
+  has_many :likes # delete this
   has_many :pages
+  has_many :memberships
+  has_many :groups, :through => :memberships
   #has_many :messages
   #has_many :sent_messages, :class_name => 'Message', :foreign_key => 'user_id'
   #has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id'

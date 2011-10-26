@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111024123112) do
+ActiveRecord::Schema.define(:version => 20111026190628) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(:version => 20111024123112) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
   end
 
   create_table "confirms", :force => true do |t|
@@ -116,11 +119,25 @@ ActiveRecord::Schema.define(:version => 20111024123112) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "wall_id"
   end
 
   create_table "likes", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.integer  "user_id"
+    t.string   "author"
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "member_id"
   end
 
   create_table "mentions", :force => true do |t|
