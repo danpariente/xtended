@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   def show
-    if current_user
+  	@user = current_user
+    if @user
       #redirect_to :controller => 'aspects', :action => 'index'
       #:controller => 'pages', :action => 'index' 
-      redirect_to user_path(current_user.id)
+      render :landing#redirect_to current_user
     else
       @landing_page = true
       #@user = User.new(:username => Digest::MD5.hexdigest(Time.now.to_s))
@@ -13,7 +14,14 @@ class HomeController < ApplicationController
   end
   
   def landing 
-    @user = current_user	
+    @user = current_user
+    @myself = @user
+    @post = Post.new
+  	#@viewed_user = User.find_by_username(params[:username])
+  	@viewed_user = User.find(params[:id])
+  	@viewing_self = (@viewed_user == @myself)
+  	all = [] 
+    @all = all
   end
   
   def after_login

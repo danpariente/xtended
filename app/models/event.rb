@@ -20,6 +20,6 @@ class Event < ActiveRecord::Base
   end
 
   def add_activity
-    Activity.create(:user => self.user, :activity_type => 'event', :text => "<a href='/user/#{self.username}'>#{self.formatted_name}</a> created a new event - <a href='/event/#{self.id}'>#{self.name}</a>.")
+    Activity.create(:user_id => self.user.id, :activity_type => 'event', :text => "<a href='/user/#{self.user.username}'>#{self.user.username}</a> created a new event - <a href='/event/#{self.id}'>#{self.name}</a>.")
   end	
 end

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  ROLES = %w[admin jobseeker employer]	
+  ROLES = %w[admin jobseeker employer]
+  belongs_to :wall
+  	
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -10,10 +12,14 @@ class User < ActiveRecord::Base
   has_many :pendings
   has_many :pending_events, :through => :pendings, :class_name => 'Event', :foreign_key => 'user_id'#, :date.gte => Date.today 
   
+  has_many :statuses
+  has_many :requests
+  has_many :activities
   has_many :posts
   has_many :comments
   has_many :likes # delete this
   has_many :pages
+  has_many :photos # not sure to add this feature
   has_many :memberships
   has_many :groups, :through => :memberships
   #has_many :messages
@@ -31,10 +37,13 @@ class User < ActiveRecord::Base
    acts_as_messageable :table_name => "messages",
                        :required   => [:topic, :body],           
                        :class_name => "ActsAsMessageable::Message"           
-
-  # Setup accessible (or protected) attributes for your model
+  
+  after_create :create_wall                       
+  
+  # Setting up accessible (or protected) attributes for the model
   attr_accessible :username, :role, :email, :password, :password_confirmation, :remember_me, :message_id
   
+  # Methods to manage the user roles
   def role_symbols
     [role.to_sym]
   end
@@ -42,7 +51,7 @@ class User < ActiveRecord::Base
   def role?(current_role)
     role == current_role.to_s	
   end
-  
+  # methods to nullify the user instead of delete it
   def recv
   	# super
     Message.where(:r_hidden=>false).order("created_at DESC")
@@ -51,6 +60,14 @@ class User < ActiveRecord::Base
   def sent
     Message.where(:s_hidden=>false).order("created_at DESC")
   end
+  
+  def add_friend(user)
+    self.friendships.create(:friend_id => user.id)  
+  end
+  
+  def friends2
+    (inverse_friends + friends).uniq
+  end  
   
   def feed
     feed = [] + activities

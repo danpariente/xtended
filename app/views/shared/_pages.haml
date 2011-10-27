@@ -1,7 +1,7 @@
-- if @user.pages.empty?
-  #{@user.formatted_name} has no pages.
+- if @viewed_user.pages.empty?
+  #{@viewed_user.formatted_name} has no pages.
 %ul
-  - @user.pages.each do |page|
+  - @viewed_user.pages.each do |page|
     %li 
       %a{:href => "/pages/#{page.id}"}#{page.title}
       

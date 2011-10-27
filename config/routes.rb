@@ -14,7 +14,9 @@ Jobster::Application.routes.draw do
   	resources :likes
   end
   
-  resources :users do 
+  resources :users do
+  	get :profile, :on => :collection  
+  	get :change_profile, :on => :collection 
   	resources :pages
   end
   

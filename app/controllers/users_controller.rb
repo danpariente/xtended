@@ -11,31 +11,36 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Successfully created User." 
-      redirect_to user_path(@user.id)
+      redirect_to @user
     else
+      flash[:notice] = "Couldn't create User." 	
       render :action => 'new'
     end
   end
 
   def show
-  	#@user = User.find(params[:id])
   	@user = User.find(params[:id])
+  	#@user = current_user    CANT DO THIS IF THE USER IS CREATED IN THAT MOMENT
   	@myself = @user
-  	@viewed_user = User.find_by_username(params[:username])
+  	#@viewed_user = User.find_by_username(params[:username])
+  	@viewed_user = User.find(params[:id])
   	@viewing_self = (@viewed_user == @myself)
   	#all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
     #@all = all.sort {|x,y| y.created_at <=> x.created_at}
   end
   
   def show_by_username 
-  	@user = User.find_by_username(params[:username])
+  	@user = current_user
+  	@viewed_user = User.find_by_username(params[:username])
+  	#all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
+    #@all = all.sort {|x,y| y.created_at <=> x.created_at}
   	#@myself = @user
   	#@viewed_user = User.find_by_username(params[:username])
   	#@viewing_self = (@viewed_user == @myself)
   	render :action => 'show'
   end
   
-  #[TODO] add some enable / disable method for admins
+  #TODO add some enable / disable method for admins
 
   def edit
     @user = User.find(params[:id])
@@ -51,6 +56,10 @@ class UsersController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+  
+  def profile 
+    @user = current_user          	
   end
 
   def destroy

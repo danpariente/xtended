@@ -5,12 +5,13 @@
   .span-13.last
     = link_to "like", likes_path(:user_id => current_user.id, :likeable_type => commentable.class, :likeable_id => commentable.id, :author => current_user.username), :method => :post 	
     - unless commentable.likes.empty?
-      #{commentable.likes.size} people likes this.
+      = pluralize (commentable.likes.size, 'person')
+      likes this.
       - commentable.likes.each do |like|
         - if commentable.likes.last != like
           = link_to like.author, "/user/#{like.author}"
         - else
-          = 'and '
+          = 'and ' unless commentable.likes.size == 1
           = link_to like.author, "/user/#{like.author}"     
         
 .span-13.hide.last{:id => "comment_box_#{commentable.class.to_s}_#{commentable.id}"}

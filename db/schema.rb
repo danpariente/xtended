@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026190628) do
+ActiveRecord::Schema.define(:version => 20111027000153) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -143,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20111026190628) do
   create_table "mentions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "status_id"
   end
 
   create_table "messages", :force => true do |t|
@@ -250,12 +252,16 @@ ActiveRecord::Schema.define(:version => 20111026190628) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "from_id"
   end
 
   create_table "statuses", :force => true do |t|
-    t.string   "text",       :limit => 160
+    t.string   "text",         :limit => 160
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "recipient_id"
   end
 
   create_table "users", :force => true do |t|
@@ -283,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20111026190628) do
     t.string   "description"
     t.text     "interests"
     t.text     "education"
+    t.integer  "wall_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
