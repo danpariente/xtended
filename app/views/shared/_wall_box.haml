@@ -25,6 +25,6 @@ What's on your mind?
       }
     });     
   .prepend-12
-    =# f.hidden_field :wall_id, :value => @viewed_user.wall.id    
-    = f.hidden_field :username, :value => @viewed_user.username    
+    = f.hidden_field :wall_id, :value => @viewed_user.wall.id    
+    =# f.hidden_field :username, :value => @viewed_user.username    
     = f.submit 'update' 

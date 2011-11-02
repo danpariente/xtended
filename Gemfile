@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-
+gem 'rake', '0.8.7'
 gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
@@ -16,6 +16,8 @@ gem "ckeditor", "~> 3.6.1"
 gem 'haml'
 gem 'activeadmin'
 gem 'acts-as-messageable'
+gem 'rack-pjax'
+gem 'rest-client'
 
 # Use unicorn as the web server
 # gem 'unicorn'

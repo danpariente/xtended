@@ -78,11 +78,13 @@ class User < ActiveRecord::Base
   end
 
   def possessive_pronoun
-    sex.downcase == 'male' ? 'his' : 'her'
+  	'male' #if sex == nil
+    #sex.downcase == 'male' ? 'his' : 'her'
   end
   
   def pronoun
-    sex.downcase == 'male' ? 'he' : 'she'
+  	'he'# if sex == nil
+    #sex.downcase == 'male' ? 'he' : 'she' 
   end
   
   def create_wall
@@ -109,4 +111,13 @@ class User < ActiveRecord::Base
     end
     groups - self.groups
   end
+  
+  def self.search(search)
+  	q = "%#{search}%"
+    if search
+      where('username LIKE ? or formatted_name LIKE ?', q, q)
+    else
+      []
+    end
+end
 end

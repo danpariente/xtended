@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Successfully created User." 
-      redirect_to @user
+      redirect_to login_path, :notice => 'Successfully registered. You can join with your account now...'
     else
       flash[:notice] = "Couldn't create User." 	
       render :action => 'new'
@@ -20,20 +20,20 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-  	#@user = current_user    CANT DO THIS IF THE USER IS CREATED IN THAT MOMENT
+  	#@user = current_user    CANT DO THIS IF THE USER IS CREATED IN THAT MOMENT APP CRASHES
   	@myself = @user
   	#@viewed_user = User.find_by_username(params[:username])
   	@viewed_user = User.find(params[:id])
   	@viewing_self = (@viewed_user == @myself)
-  	#all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
-    #@all = all.sort {|x,y| y.created_at <=> x.created_at}
+  	all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
+    @all = all.sort {|x,y| y.created_at <=> x.created_at}
   end
   
   def show_by_username 
   	@user = current_user
   	@viewed_user = User.find_by_username(params[:username])
-  	#all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
-    #@all = all.sort {|x,y| y.created_at <=> x.created_at}
+  	all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
+    @all = all.sort {|x,y| y.created_at <=> x.created_at}
   	#@myself = @user
   	#@viewed_user = User.find_by_username(params[:username])
   	#@viewing_self = (@viewed_user == @myself)

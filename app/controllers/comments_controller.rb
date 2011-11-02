@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   	@commentable = find_commentable.nil? ? current_user : find_commentable
   	@comment = @commentable.comments.build(params[:comment])
     if @comment.save!
-      redirect_to @commentable, :notice  =>  'Comment saved...' 
+      redirect_to :back, :notice  =>  'Comment saved...' 
     else  
       render :action => 'new'  
     end     

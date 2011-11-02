@@ -10,5 +10,7 @@ $(function(){
             show24Hours: false,
             separator: ':',
             step: 15});
+            
+              
 }); 
 

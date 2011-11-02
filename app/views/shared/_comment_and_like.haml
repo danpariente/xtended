@@ -1,11 +1,11 @@
 .span-15.last
   .span-2
-    %a{:href =>"#", :onclick => "$('#comment_box_#{commentable.class.to_s}_#{commentable.id}').toggle();$('#comment_box_#{commentable.class.to_s}_#{commentable.id}').focus();"} comments (#{commentable.comments.size})
-
+    = link_to "comments(#{commentable.comments.size})", '#', :onclick => "$('#comment_box_#{commentable.class.to_s}_#{commentable.id}').toggle();$('#comment_box_#{commentable.class.to_s}_#{commentable.id}').focus();"  
+   
   .span-13.last
     = link_to "like", likes_path(:user_id => current_user.id, :likeable_type => commentable.class, :likeable_id => commentable.id, :author => current_user.username), :method => :post 	
     - unless commentable.likes.empty?
-      = pluralize (commentable.likes.size, 'person')
+      = pluralize(commentable.likes.size, 'person')
       likes this.
       - commentable.likes.each do |like|
         - if commentable.likes.last != like

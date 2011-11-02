@@ -9,17 +9,17 @@
     
 .span-3
   .icons.icons_event
-  %a{:href => '/events'} Events
+  = link_to "Events", events_path
 .span-3
   .icons.icons_photo
   %a{:href => '/albums'} Photos
 .span-3
   .icons.icons_pages
-  %a{:href => '/pages'} Pages
+  = link_to "Pages", pages_path
 .span-3
   .icons.icons_group
-  %a{:href => '/groups'} Groups        
+  = link_to "Groups", groups_path        
 .span-3
   .icons.icons_friends
-  %a{:href => '/users'} Contacts
+  %a{:href => '/contacts'} Contacts
 %hr.space

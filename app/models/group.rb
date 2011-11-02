@@ -17,6 +17,6 @@ class Group < ActiveRecord::Base
   end
 
   def add_activity
-    Activity.create(:user_id => self.user.id, :activity_type => 'group', :text => "<a href='/user/#{self.user.username}'>#{self.user.username}</a> created a new group - <a href='/group/#{self.id}'>#{self.name}</a>.")
+    Activity.create(:user_id => self.user.id, :activity_type => 'group', :text => "<a href='/user/#{self.user.username}'>#{self.user.formatted_name}</a> created a new group - <a href='/groups/#{self.id}'>#{self.name}</a>.")
   end  
 end

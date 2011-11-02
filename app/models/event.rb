@@ -10,9 +10,14 @@ class Event < ActiveRecord::Base
   has_many :declined_users, :through => :declines, :class_name => 'User', :foreign_key => 'event_id'
 
   #attr_accessible :confirmed_users, :pending_users, :declined_users NO WAY U CAN'T ADD THIS
-  
+  #attr_accessible :persons
+  #attr_reader :persons
   after_create :create_wall
   after_create :add_activity
+  
+  def persons=(ids)
+  	self.invites = ids.strip.split(",")
+  end
   
   def create_wall
     self.wall = Wall.create
@@ -20,6 +25,6 @@ class Event < ActiveRecord::Base
   end
 
   def add_activity
-    Activity.create(:user_id => self.user.id, :activity_type => 'event', :text => "<a href='/user/#{self.user.username}'>#{self.user.username}</a> created a new event - <a href='/event/#{self.id}'>#{self.name}</a>.")
+    Activity.create(:user_id => self.user.id, :activity_type => 'event', :text => "<a href='/user/#{self.user.username}'>#{self.user.formatted_name}</a> created a new event - <a href='/events/#{self.id}'>#{self.name}</a>.")
   end	
 end

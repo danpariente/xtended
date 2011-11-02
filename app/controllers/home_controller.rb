@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     if @user
       #redirect_to :controller => 'aspects', :action => 'index'
       #:controller => 'pages', :action => 'index' 
-      render :landing#redirect_to current_user
+      redirect_to :action => :landing#redirect_to current_user this doesn't run code!!
     else
       @landing_page = true
       #@user = User.new(:username => Digest::MD5.hexdigest(Time.now.to_s))
@@ -17,11 +17,7 @@ class HomeController < ApplicationController
     @user = current_user
     @myself = @user
     @post = Post.new
-  	#@viewed_user = User.find_by_username(params[:username])
-  	@viewed_user = User.find(params[:id])
-  	@viewing_self = (@viewed_user == @myself)
-  	all = [] 
-    @all = all
+    @all = @user.feed
   end
   
   def after_login

@@ -1,6 +1,6 @@
 Jobster::Application.routes.draw do
   
-  resources :friendships, :memberships, :comments, :likes
+  resources :friendships, :memberships, :comments, :likes, :requests
   
   resources :posts, :only => [:create, :destroy] do 
   	resources :comments
@@ -8,6 +8,14 @@ Jobster::Application.routes.draw do
   end 
   	
   get "home/show"
+  
+  resources :activities do 
+  	resources :comments
+  end
+  
+  resources :statuses do 
+  	resources :comments
+  end
   
   resources :pages do 
   	resources :comments
@@ -43,14 +51,14 @@ Jobster::Application.routes.draw do
 
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
   devise_for :users, :path => "/", :path_names => 
   { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
 
   devise_for :users do
     get "/login", :to => "devise/sessions#new"
     get "/logout", :to => "devise/sessions#destroy"
-    get "/register", :to => "devise/registrations#new"
+    get "/register", :to => "registrations#new"
   end
   
   match '/user/:username',
@@ -59,7 +67,14 @@ Jobster::Application.routes.draw do
   
   match '/pages',
             :controller => 'pages',
-            :action => 'index'                         
+            :action => 'index' 
+            
+  match '/contacts' => "contacts#contacts"
+  
+  match 'user/contacts/:id' => "contacts#contacts_user"
+  
+  match 'request/:user_id' => "requests#send_request"                                              
+  match 'requests/pending' => "requests#pending"
             
   root :to => "home#show"            
 

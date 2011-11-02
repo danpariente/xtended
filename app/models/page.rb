@@ -13,12 +13,12 @@ class Page < ActiveRecord::Base
   after_create :add_activity
 
   def add_activity
-    if self.event
-      Activity.create(:user_id => self.user.id, :activity_type => 'event page', :text => "<a href='/user/#{self.user.username}'>#{self.user.username}</a> created a page - <a href='/event/page/#{self.id}'>#{self.title}</a> for the event <a href='/event/#{self.event.id}'>#{self.event.name}</a>.") 
-    elsif self.group
-      Activity.create(:user_id => self.user.id, :activity_type => 'group page', :text => "<a href='/user/#{self.user.username}'>#{self.user.username}</a> created a page - <a href='/group/page/#{self.id}'>#{self.title}</a> for the group <a href='/group/#{self.group.id}'>#{self.group.name}</a>.")       
+    if self.pageable_type == 'Event'
+      Activity.create(:user_id => self.user.id, :activity_type => 'event page', :text => "<a href='/user/#{self.user.username}'>#{self.user.formatted_name}</a> created a page - <a href='/events/#{self.pageable_id}/pages/#{self.id}'>#{self.title}</a> for the event <a href='/events/#{self.pageable_id}'>#{self.pageable.name}</a>.") 
+    elsif self.pageable_type == 'Group'
+      Activity.create(:user_id => self.user.id, :activity_type => 'group page', :text => "<a href='/user/#{self.user.username}'>#{self.user.formatted_name}</a> created a page - <a href='/groups/#{self.pageable_id}/pages/#{self.id}'>#{self.title}</a> for the group <a href='/groups/#{self.pageable_id}'>#{self.pageable.name}</a>.")       
     else
-      Activity.create(:user_id => self.user.id, :activity_type => 'page', :text => "<a href='/user/#{self.user.username}'>#{self.user.username}</a> created a page - <a href='/page/#{self.id}'>#{self.title}</a>.")
+      Activity.create(:user_id => self.user.id, :activity_type => 'page', :text => "<a href='/user/#{self.user.username}'>#{self.user.formatted_name}</a> created a page - <a href='/pages/#{self.id}'>#{self.title}</a>.")
     end
   end
     

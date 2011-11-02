@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027000153) do
+ActiveRecord::Schema.define(:version => 20111101233629) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(:version => 20111027000153) do
     t.integer  "y"
     t.integer  "height"
     t.integer  "width"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bridges", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -189,6 +196,12 @@ ActiveRecord::Schema.define(:version => 20111027000153) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "event_id"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", :force => true do |t|

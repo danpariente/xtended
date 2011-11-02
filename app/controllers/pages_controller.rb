@@ -14,6 +14,7 @@ class PagesController < ApplicationController
 
   def show
     @user = current_user
+    @viewed_user = @user
     @page = Page.find(params[:id])	
   end
 

@@ -1,5 +1,5 @@
 What's on your mind?
-= form_for Post.new do |f|
+= form_for Status.new do |f|
   .span-15
     = f.text_area :text, :rows => 2, :cols => 113, :id => 'update', :maxlength => 200, :autocomplete => :off
   .span-6
@@ -25,5 +25,5 @@ What's on your mind?
       }
     });     
   .prepend-12
-    =# f.hidden_field :wall_id, :value => @user.wall.id 
+    = f.hidden_field :user_id, :value => @user.id 
     = f.submit 'update' 

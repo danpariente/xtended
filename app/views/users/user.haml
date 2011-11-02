@@ -1,17 +1,17 @@
-=render '/home/top'
+= render '/home/top'
 
 .span-24.last
   .span-3
     %img.span-3{:src => "#{@viewed_user.photo_url}"}
-    =render '/home/links'  
+    = render '/home/links'  
     %h3 Friends
-    =render 'contacts', :locals => {:user => @viewed_user}
+    = render 'contacts', :user => @viewed_user
   .span-15
     
     %h3 Wall
-    =render 'wall_box'
+    = render 'wall_box'
     %hr.space
-    =render 'feeds'
+    = render 'shared/feeds'
 
   .span-6.last
     %h3 Information
@@ -21,9 +21,9 @@
     %hr.space
     
     %h3 Photos  
-    =render 'album'
+    = render 'album'
     
     %h3 Pages
-    =render 'pages', {:locals => {:owner => @viewed_user, :owner_name => 'user'}}
+    = render 'pages', {:locals => {:owner => @viewed_user, :owner_name => 'user'}}
     
     %hr.space

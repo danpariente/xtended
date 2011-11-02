@@ -19,5 +19,9 @@ module ApplicationHelper
   def people_who_likes 
     self.likes.collect { |like| "<a href='/user/#{like.user.username}'>#{like.user.formatted_name}</a>" }	
   end
+  
+  def gravatar_for(user) 
+  	"#{user.photo_url.nil? ? "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email)}" : user.photo_url }"
+  end
   		
 end

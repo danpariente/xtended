@@ -42,7 +42,7 @@ class Status < ActiveRecord::Base
     ats.each { |at| 
       user = User.where(:username => at[1,at.length]).first
       if user
-        self.text.sub!(at, "<a href='/#{user.nickname}'>#{at}</a>") 
+        self.text.sub!(at, "<a href='/user/#{user.username}'>#{at}</a>") 
         @mentions << Mention.new(:user => user, :status => self)
       end      
     }            
