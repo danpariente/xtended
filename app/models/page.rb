@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
-  include Commentable 	
+  
   has_many :comments, :as => :commentable		
   has_many :likes, :as => :likeable
   
