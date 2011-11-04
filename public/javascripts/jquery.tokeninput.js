@@ -427,7 +427,7 @@ $.TokenList = function (input, url_or_data, settings) {
             });
 
         // Store data on the token
-        var token_data = {"id": item.id, "name": item.name};
+        var token_data = {"id": item.id, "username": item.name};
         $.data(this_token.get(0), "tokeninput", item);
 
         // Save this token for duplicate checking

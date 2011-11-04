@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
   	@users = User.all
+  	respond_to do |format| 
+  	  format.html
+  	  format.json { render :json => @users.map(&:attributes)}#.each {|h| h.dup.map { |k,v| [k.gsub!("username", "name"), v] }} }	
+  	end
   end
 
   def new
@@ -48,8 +52,8 @@ class UsersController < ApplicationController
 
    def update
     @user = User.find(params[:id])
-    params[:user].delete(:password) if params[:user][:password].blank?
-    params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+    #params[:user].delete(:password) if params[:user][:password].blank?
+    #params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated User."
       redirect_to users_path

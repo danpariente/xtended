@@ -16,8 +16,9 @@ gem "ckeditor", "~> 3.6.1"
 gem 'haml'
 gem 'activeadmin'
 gem 'acts-as-messageable'
-gem 'rack-pjax'
+#gem 'rack-pjax'
 gem 'rest-client'
+gem 'client_side_validations', '3.0.12'
 
 # Use unicorn as the web server
 # gem 'unicorn'

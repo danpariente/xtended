@@ -1,6 +1,6 @@
 <% title "Sign in" %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :validate => true) do |f| %>
   <div><%= f.label :username %>
   <%= f.text_field :username %></div><br />
 

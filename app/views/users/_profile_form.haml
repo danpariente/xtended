@@ -1,4 +1,4 @@
-= form_for User.new do |f|
+= form_for User.new, :method => :put do |f|
   .span-5
     A username for your account
   %br
@@ -47,6 +47,6 @@
   .span-18.last
     = f.text_area :education, :cols => 55, :rows => 2
   %br
-  .span-2.prepend-13
+  .span-2.prepend-8
     = f.submit 'save profile'
    

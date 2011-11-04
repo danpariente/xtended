@@ -26,13 +26,18 @@ class User < ActiveRecord::Base
   #has_many :sent_messages, :class_name => 'Message', :foreign_key => 'user_id'
   #has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id'
   
-  validates :username, :presence => true, :uniqueness => true
+  validates :username, :email, :presence => true
+ # validates_uniqueness_of  :username, :on => :create
+  validates :email, :email_format => true
+  validates :password, :presence => true,
+                       :length => {:within => 6..40}
   validates_format_of :username, :with => /\A[A-Za-z0-9_]+\z/
-  validates_length_of :username, :maximum => 32
+  validates_length_of :username, :maximum => 12, :minimum => 3
+  #validates_confirmation_of :password, :on => :create
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable #, :validatable
          
    acts_as_messageable :table_name => "messages",
                        :required   => [:topic, :body],           

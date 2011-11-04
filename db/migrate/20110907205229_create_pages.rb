@@ -6,9 +6,6 @@ class CreatePages < ActiveRecord::Migration
 	  t.column :body, :text
       t.timestamps
     end
-    Page.create(:title => "Jobster Home",
-				:permalink => "welcome-page",
-				:body => "Welcome to Jobster")
   end
 
   def self.down

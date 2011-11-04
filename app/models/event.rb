@@ -9,14 +9,16 @@ class Event < ActiveRecord::Base
   has_many :declines
   has_many :declined_users, :through => :declines, :class_name => 'User', :foreign_key => 'event_id'
 
+  
+
   #attr_accessible :confirmed_users, :pending_users, :declined_users NO WAY U CAN'T ADD THIS
-  #attr_accessible :persons
-  #attr_reader :persons
+  #attr_accessible :user_tokens, :name
+  #attr_reader :user_tokens
   after_create :create_wall
   after_create :add_activity
   
-  def persons=(ids)
-  	self.invites = ids.strip.split(",")
+  def user_tokens=(ids)
+  	self.user_ids = ids.split(",")
   end
   
   def create_wall
