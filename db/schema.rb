@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111101233629) do
+ActiveRecord::Schema.define(:version => 20111104233024) do
+
+  create_table "abouts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_birth"
+    t.string   "gender"
+    t.string   "marital_status"
+    t.string   "current_drawn"
+    t.string   "availability"
+    t.string   "mobile_number"
+    t.string   "home_number"
+    t.string   "work_number"
+    t.string   "education_level"
+    t.text     "skills"
+    t.string   "image"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -86,6 +105,15 @@ ActiveRecord::Schema.define(:version => 20111101233629) do
     t.integer  "user_id"
   end
 
+  create_table "competencies", :force => true do |t|
+    t.string   "name"
+    t.string   "rating"
+    t.text     "description"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "confirms", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,6 +126,19 @@ ActiveRecord::Schema.define(:version => 20111101233629) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "event_id"
+  end
+
+  create_table "educations", :force => true do |t|
+    t.string   "country"
+    t.string   "education_level"
+    t.string   "field_of_study"
+    t.string   "institution"
+    t.date     "attended_from"
+    t.date     "attended_to"
+    t.text     "add_notes"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|
@@ -114,6 +155,22 @@ ActiveRecord::Schema.define(:version => 20111101233629) do
     t.string   "attendance"
   end
 
+  create_table "experiences", :force => true do |t|
+    t.string   "company_name"
+    t.string   "country"
+    t.string   "industry"
+    t.date     "hired_from"
+    t.date     "hired_to"
+    t.string   "job_title"
+    t.text     "responsability"
+    t.text     "reason_leaving"
+    t.string   "salary"
+    t.text     "add_notes"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -128,6 +185,14 @@ ActiveRecord::Schema.define(:version => 20111101233629) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "wall_id"
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string   "language"
+    t.string   "level"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "likes", :force => true do |t|
@@ -221,6 +286,20 @@ ActiveRecord::Schema.define(:version => 20111101233629) do
     t.integer  "wall_id"
   end
 
+  create_table "preferences", :force => true do |t|
+    t.text     "job_titles"
+    t.string   "job_type"
+    t.string   "job_categories"
+    t.string   "expected_salary"
+    t.boolean  "able_to_travel"
+    t.boolean  "able_to_relocate"
+    t.string   "preferred_location"
+    t.boolean  "shift"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "private_messages", :force => true do |t|
     t.string   "topic"
     t.text     "body"
@@ -245,6 +324,24 @@ ActiveRecord::Schema.define(:version => 20111101233629) do
 
   add_index "private_messages", ["ancestry"], :name => "index_private_messages_on_ancestry"
   add_index "private_messages", ["sent_messageable_id", "received_messageable_id"], :name => "acts_as_messageable_ids"
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "references", :force => true do |t|
+    t.string   "name"
+    t.string   "relationship"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "company_name"
+    t.string   "job_title"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"

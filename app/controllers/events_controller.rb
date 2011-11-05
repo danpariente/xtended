@@ -1,48 +1,5 @@
 class EventsController < ApplicationController
-  def create_page 
-  	event = Event.find(params[:id])
-  	page = Page.create(:title  => params[:title], :body => params[:body], :user => current_user, :event => event)
-  	redirect_to "/event/#{event.id}/page/#{page.id}"
-  end
   
-  def destroy_page 
-  	@page = Page.find(params[:id])
-  	@page.destroy
-  	redirect_to "event/pages"
-  end
-  
-  def new_page 
-  	@page = Page.new
-  	@event = Event.find(params[:id])
-  	# {:locals  =>  {:owner  => 'event'}}  	
-  end	
-  
-  def edit_page 
-  	@page = Page.find(params[:id])
-  end
-  
-  def update_page 
-  	@page = Page.find(params[:id])
-  	@page.update_attributes(:title => params[:title], :body => params[:body])
-  	redirect_to "event/page/#{@page.id}"
-  end
-  
-  def show_page 
-  	@page = Page.find(params[:id])
-  	# {:locals  =>  {:owner  => 'event'}} 
-  end
-   
-  def page 
-    @user = current_user
-    #@page = Page.new
-    
-    @page = current_event.pages.build(params[:event]) 
-    #@event = Event.find(params[:event_id])
-    #render :controller => 'page', :action => 'new'	
-  end
-  
-  # EVENTS
-  	
   def index
   	@user = current_user
   	@events = Event.all
@@ -109,13 +66,6 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to '/events'
   end
-  
-  def post_wall
-  	@user = current_user
-  	#@post = Post.new(params[:event])
-    Post.create(:text => params[:status], :user_id => params[:user_id], :wall_id => params[:wall_id])
-    redirect_to :back #if @post.save	    
-    #render :action => 'show'
-  end
+   
 
 end

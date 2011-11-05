@@ -11,10 +11,12 @@ Jobster::Application.routes.draw do
   
   resources :activities do 
   	resources :comments
+  	resources :likes
   end
   
   resources :statuses do 
   	resources :comments
+  	resources :likes
   end
   
   resources :pages do 
@@ -71,7 +73,7 @@ Jobster::Application.routes.draw do
             
   match '/contacts' => "contacts#contacts"
   
-  match 'user/contacts/:id' => "contacts#contacts_user"
+  match 'contacts/:id' => "contacts#contacts_user"
   
   match 'request/:user_id' => "requests#send_request"                                              
   match 'requests/pending' => "requests#pending"
