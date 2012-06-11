@@ -1,45 +1,81 @@
 source 'http://rubygems.org'
-gem 'rake', '0.8.7'
-gem 'rails', '3.0.7'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'devise'
+gem 'bundler', '> 1.1.0'
+ruby '1.9.3' if ENV['HEROKU']
+
+gem 'rails', '3.2.3'
+
+
+gem 'devise', '1.5.3'
 gem 'cancan'
 gem 'nifty-generators'
-gem 'jquery-rails'
 gem 'newrelic_rpm'
-gem 'tiny_mce'
-gem "ckeditor", "~> 3.6.1"
-gem 'haml'
-gem 'activeadmin'
+gem 'tinymce-rails'
+gem "ckeditor", "3.7.1"
 gem 'acts-as-messageable'
 #gem 'rack-pjax'
 gem 'rest-client'
-gem 'client_side_validations', '3.0.12'
+gem 'geocoder'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+group :production do 
+  #gem 'thin'
+  #gem 'sqlite3'
+  #gem 'rails_admin', '~> 0.0.3'
+  gem 'fastercsv', '1.5.4', :require => false
+  gem 'rack-ssl', :require => 'rack/ssl'
+  gem 'rack-rewrite', '~> 1.2.1', :require => false
+  gem 'rack-piwik', :require => 'rack/piwik', :require => false
+end
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# configuration
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :heroku do
+  gem 'pg'
+  #gem 'unicorn', '~> 4.3.0', :require => false
+end
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
+# file uploading
 
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'carrierwave', '0.6.2'
+gem 'fog'
+gem 'mini_magick', '3.4'
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
-gem "mocha", :group => :test
+group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'railroady'    
+end
+
+# views
+
+gem 'haml'
+gem 'mobile-fu'
+
+gem 'will_paginate'
+gem 'client_side_validations'
+gem 'gon'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'
+
+group :development do
+  gem 'heroku'
+  gem 'heroku_san', '3.0.1', :platforms => :mri_19
+  #gem 'capistrano', :require => false
+  #gem 'capistrano_colors', :require => false
+  #gem 'capistrano-ext', :require => false
+  #gem 'linecache', '0.46', :platforms => :mri_18
+  gem 'yard', :require => false
+
+  # for tracing AR object instantiation and memory usage per request
+  gem 'oink'
+end
+
+

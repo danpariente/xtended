@@ -7,15 +7,15 @@ class ApplicationController < ActionController::Base
   end
 
   
-  private
+private
 	
-    def current_event
+  def current_event
 	  Event.find(session[:event_id])
 	  rescue ActiveRecord::RecordNotFound
-	    cart = Event.create
+	    event = Event.create
 	    session[:event_id] = event.id
 	    event
-	end
+  end
 
     
 

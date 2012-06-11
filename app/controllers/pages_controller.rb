@@ -1,11 +1,6 @@
 class PagesController < ApplicationController
   load_and_authorize_resource	
-  uses_tiny_mce :options => {
-                            :theme => 'advanced',
-                            :theme_advanced_resizing => true,
-                            :theme_advanced_resize_horizontal => true,
-                            :plugins => %w{ table fullscreen }
-                          }
+
   def index
   	@pageable = find_pageable
   	@user = current_user

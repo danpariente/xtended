@@ -1,7 +1,7 @@
 =render 'shared/text_limiter_js'
 What's on your mind?
 %form{ {:controller => 'event', :action => 'post_wall'}, :method => 'post'}
-  %textarea.update.span-15#update{:name => 'status', :rows => 2, :onKeyDown => "text_limiter($('#update'), $('#counter'))"}
+  %textarea.update.span-15#update{:name => 'status', :rows => 2, :cols => 107, :onKeyDown => "text_limiter($('#update'), $('#counter'))"}
   .span-6
     %span#counter
       160

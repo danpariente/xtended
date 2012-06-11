@@ -19,7 +19,7 @@
           %strong #{event.name}
           .quiet #{event.description}
           .quiet Venue : #{event.venue}
-          .quiet Date/time : #{event.time.strftime "%I:%M %p"}, #{event.date.strftime "%d %b %Y"}
+          .quiet Date/time : #{event.event_time.strftime "%I:%M %p"}, #{event.event_date.strftime "%d %b %Y"}
         .span-4.last.right
           %form{:id => "form_event_#{event.id}", :method => 'post', :action => "/events/#{event.id}"} 
             %input{:type => 'hidden', :name => '_method', :value => 'delete'}

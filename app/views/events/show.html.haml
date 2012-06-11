@@ -8,10 +8,10 @@
     %h3 #{@event.name}
     .span-14
       .span-3 Date
-      .span-10 #{@event.date.strftime "%d %b %Y"}
+      .span-10 #{@event.event_date.strftime "%d %b %Y"}
     .span-14
       .span-3 Time
-      .span-10 #{@event.time.strftime "%I:%M %p"}
+      .span-10 #{@event.event_time.strftime "%I:%M %p"}
     .span-14
       .span-3 Venue
       .span-10 #{@event.venue}

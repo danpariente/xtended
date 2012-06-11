@@ -6,9 +6,9 @@
     = render '/home/links'
   .span-15
     - if @show_search
-      %h3 Find your friends
+      %h3 Find your acquaintances
       - form_tag contacts_path, :method => 'get' do
-        Look for friends here - 
+        Look for Contacts here - 
         = text_field_tag :search, params[:search] 
         = submit_tag "Search Contacts", :name => nil 
 
@@ -30,7 +30,7 @@
               This is me!  
           %hr.space
 
-    %h3 Friends
+    %h3 Contacts
     - @user.friends.each do |friend|
       .span-2
         %img.span-2{:src => gravatar_for(friend)}

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :photos # not sure to add this feature
   has_many :memberships
   has_many :groups, :through => :memberships
+  has_one :profile
   #has_many :messages
   #has_many :sent_messages, :class_name => 'Message', :foreign_key => 'user_id'
   #has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id'
@@ -46,7 +47,7 @@ class User < ActiveRecord::Base
   after_create :create_wall                       
   
   # Setting up accessible (or protected) attributes for the model
-  attr_accessible :username, :role, :email, :password, :password_confirmation, :remember_me, :message_id
+  attr_accessible :username, :first_name, :last_name, :role, :email, :password, :password_confirmation, :remember_me, :message_id
   
   # Methods to manage the user roles
   def role_symbols

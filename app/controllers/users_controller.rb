@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   	#@user = current_user    CANT DO THIS IF THE USER IS CREATED IN THAT MOMENT APP CRASHES
   	@myself = @user
   	#@viewed_user = User.find_by_username(params[:username])
-  	@viewed_user = User.find(params[:id])
+    @viewed_user = User.find(params[:id])
   	@viewing_self = (@viewed_user == @myself)
   	all = [] + @viewed_user.activities + @viewed_user.wall.posts + @viewed_user.statuses
     @all = all.sort {|x,y| y.created_at <=> x.created_at}
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def profile 
     @user = current_user          	
   end

@@ -6,7 +6,7 @@
     .comic.span-9.prepend-13.last
       %a.topbar{:href =>"/user/#{@user.username}"} #{@user.username.capitalize} -
       %a.topbar{:href => '/'} home -
-      %a.topbar{:href => '/users/profile'}  profile -  
+      %a.topbar{:href => smart_profile }  profile - 
       %a.topbar{:href => '/contacts'}  contacts -  
       %a.topbar{:href => '/logout'}  logout       
   - else

@@ -1,7 +1,18 @@
+<div class="outer"> 
+    <%= image_tag 'distributed.png', :style => "no-repeat -516px -502px; width: 84px; padding-top: 0px;" %>
+</div>
+<div class="modal_container">
+  <div class="inner">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }, :validate => true) do |f| %>
   <%= devise_error_messages! %>
+  
+  <div><%= f.label :first_name %>
+  <%= f.text_field :first_name %></div><br />
+
+  <div><%= f.label :last_name %>
+  <%= f.text_field :last_name %></div><br />
 
   <div><%= f.label :username %><br />
   <%= f.email_field :username %></div>
@@ -23,3 +34,6 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
 <%= link_to "Back", :back %>
+
+  </div>
+</div>

@@ -6,10 +6,10 @@ class FriendshipsController < ApplicationController
 	    if @friendship.save and @inverse_friendship.save
 	      @request = Request.find_by_user_id_and_from_id(current_user.id, params[:friend_id])	
 	      @request.destroy
-	      flash[:notice] = "Added friend."
+	      flash[:notice] = "Added contact."
 	      redirect_to current_user
 	    else
-	      flash[:error] = "Unable to add friend."
+	      flash[:error] = "Unable to add contact."
 	      redirect_to current_user
 	    end
 	end

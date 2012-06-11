@@ -1,3 +1,4 @@
+=# tinymce_assets 
 = form_for [@pageable, Page.new] do |f|
   = f.hidden_field :user_id, :value => @user.id
   = f.hidden_field :event_id, :value => @event.id if @event
@@ -7,7 +8,9 @@
     = f.text_field :title, :size => 60
   %strong Body
   %p
-    = f.text_area :body, :class => "mceEditor", :rows => 20, :cols => 100
+    = f.text_area :body, :class => "tinymce", :rows => 20, :cols => 100
+    =# tinymce 
   %br
     = f.submit "create"  
+
         
