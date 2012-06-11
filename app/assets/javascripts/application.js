@@ -7,7 +7,7 @@
 //= require custom.min
 //= require rails.validations
 //= require rails.validations.custom
-
+//= require lang/en
 //= require_self
 
 
