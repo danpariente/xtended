@@ -4,6 +4,7 @@
 *= require datepicker
 *= require custom
 *= require additional
+*= require uniform.default
 */
 
 #flash_notice, #flash_error, #flash_alert {
