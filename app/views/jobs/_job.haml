@@ -1,0 +1,61 @@
+.display 
+  %table 
+    %tr 
+      %td
+        
+           
+        = @job.job_type 
+        %br   
+        %b Categorized under 
+        = @job.job_category
+        %br  
+        %b Travel:
+        = @job.travel
+        %br 
+        %b Relocate:
+        = @job.relocate  
+        %br   
+        %b Education: 
+        = @job.lowest_education_level
+             
+         
+      %td
+        .salary_min 
+          Min
+          $ 
+          = @job.salary_min 
+          
+        .salary_max 
+          Max 
+          $ 
+          = @job.salary_max 
+        %p 
+          Negotiable
+          = @job.negotiable 
+         
+      
+    
+  #job_desc_wrapper
+    .job_desc
+    %h2 Job description 
+    
+    .textilize
+      %p 
+        %b 
+          %ins Description 
+        %br
+        = @job.responsability
+       
+      
+       
+     
+    
+  .job_location 
+    %h3 Working location
+    = @job.working_location
+    %br
+    = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@job.latitude}%2C#{@job.longitude}"    
+   
+ 
+ 
+ 

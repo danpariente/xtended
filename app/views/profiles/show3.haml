@@ -1,0 +1,121 @@
+
+
+%h1 Profile
+
+= @profile.first_name 
+%br
+= @profile.last_name 
+%br
+= @profile.date_birth 
+%br
+= @profile.marital_status 
+%br
+= @profile.current_drawn 
+%br
+= @profile.availability 
+%br
+= @profile.mobile_number 
+%br
+= @profile.skills
+%br
+- unless @profile.preference.nil?
+  %h3 Preferences
+  = @profile.preference.job_titles
+  %br
+  = @profile.preference.job_categories
+  %br
+  = @profile.preference.expected_salary
+  %br
+  = @profile.preference.preferred_location
+
+- unless @profile.educations.nil?
+  %h3 Educations and Professional Certifications
+  - for education in @profile.educations
+    
+    = education.country
+    %br
+    = education.education_level
+    %br
+    = education.field_of_study
+    %br
+    = education.attended_from
+    %br
+    = education.attended_to
+    %hr
+
+- unless @profile.experiences.nil?
+  %h3 Experiences
+  - for experience in @profile.experiences
+    
+    = experience.company_name
+    %br
+    = experience.country
+    %br
+    = experience.industry
+    %br
+    = experience.hired_from
+    %br
+    = experience.hired_to
+    %br
+    = experience.job_title
+    %br
+    = experience.responsability
+    %br
+    = experience.reason_leaving
+    %br
+    = experience.salary
+    %br
+    = experience.add_notes
+    
+    %hr	
+
+- unless @profile.competencies.nil?
+  %h3 Competencies
+  - for competency in @profile.competencies
+    
+    = competency.name
+    %br
+    = competency.rating
+    %br
+    = competency.description
+   
+    %hr
+
+- unless @profile.languages.nil?
+  %h3 Languages
+  - for language in @profile.languages    
+    = language.language
+    %br
+    = language.level        
+    %hr	
+	
+- unless @profile.references.nil?
+  %h3 References
+  - for reference in @profile.references
+    = reference.name
+    %br
+    = reference.relationship
+    %br
+    = reference.email
+    %br
+    = reference.phone_number
+    %br
+    = reference.company_name
+    %br
+    = reference.job_title
+    %hr		
+    
+	
+
+%hr.space
+  = link_to "+ add preferences", "/profiles/#{params[:id]}/preference/new"
+%hr.space
+  = link_to "+ add education", "/profiles/#{params[:id]}/education/new"
+%hr.space
+  = link_to "+ add experiences", "/profiles/#{params[:id]}/experience/new"  
+%hr.space
+  = link_to "+ add competencies", "/profiles/#{params[:id]}/competency/new"
+%hr.space
+  = link_to "+ add languages", "/profiles/#{params[:id]}/language/new"  
+%hr.space
+  = link_to "+ add references", "/profiles/#{params[:id]}/reference/new"  

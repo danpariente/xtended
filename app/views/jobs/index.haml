@@ -1,0 +1,43 @@
+%h1 Listing jobs
+
+%table
+  %tr
+    %th Job title
+    %th Job type
+    %th Job category
+    %th Working location
+    %th Responsability
+    %th Lowest education level
+    %th Highest education level
+    %th Age min
+    %th Age max
+    %th Salary min
+    %th Salary max
+    %th Negotiable
+    %th Travel
+    %th Relocate
+
+- @jobs.each do |job| 
+  %tr
+    %td = job.job_title 
+    %td = job.job_type 
+    %td = job.job_category 
+    %td = job.working_location 
+    %td = job.responsability 
+    %td = job.lowest_education_level 
+    %td = job.highest_education_level 
+    %td = job.age_min 
+    %td = job.age_max 
+    %td = job.salary_min 
+    %td = job.salary_max 
+    %td = job.negotiable 
+    %td = job.travel 
+    %td = job.relocate 
+    %td = link_to 'Show', job 
+    %td = link_to 'Edit', edit_job_path(job) 
+    %td = link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete 
+ 
+
+%br
+
+= link_to 'New Job', new_job_path 

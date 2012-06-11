@@ -1,0 +1,72 @@
+= form_for ([@profile, @profile.experiences.build]) do |f|
+  %h3 Company
+  .span-5
+    Company name 
+  %br
+  .span-18
+    = f.text_field :company_name, :size => 20
+  %hr.space
+  .span-5
+    Country
+  %br
+  .span-18
+    = f.select :country, ["Bolivia", "Chile", "Argentina"], :prompt => "Country:"
+  %hr.space
+  .span-5
+    Industry
+  %br
+  .span-18
+    = f.select :industry, ["Accounting", "Sofware", "Security"], :prompt => "Industry:"
+  %hr.space
+  %h3 Hiring period
+  .span-5
+    From
+  %br
+  .span-18.last
+    = f.date_select :hired_from
+  %hr.space
+  .span-5
+    To
+  %br
+  .span-18.last    
+    = f.date_select :hired_to
+  %hr.space
+  %h3 Position
+  .span-5
+    Job title 
+  %br
+  .span-18
+    = f.text_field :job_title, :size => 30
+  %hr.space
+  
+  .span-5
+    Responsability
+  %br
+  .span-18.last
+    = f.text_area :responsability, :cols => 55, :rows => 2
+  %hr.space
+  .span-5
+    Reason for leaving
+  %br
+  .span-18.last
+    = f.text_area :reason_leaving, :cols => 55, :rows => 2
+  %hr.space
+  %h3 Compensation
+  .span-5
+    Salary
+  %br
+  .span-18
+    $
+    = f.text_field :salary, :size => 20
+  %hr.space
+  %h3 Others
+  .span-5
+    Additional notes
+  %br
+  .span-18.last
+    = f.text_area :add_notes, :cols => 55, :rows => 2
+  %hr.space  
+  = f.hidden_field :profile_id, :value => @profile.id
+  .span-2.prepend-8
+    = f.submit 'add'
+   

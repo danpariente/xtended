@@ -1,0 +1,80 @@
+= form_for(@job) do |f| 
+  
+  = f.label :job_title 
+  
+  = f.text_field :job_title 
+  This is a job title
+  %br
+  
+  = f.label :job_type 
+  
+  = f.text_field :job_type 
+  %br
+  
+  = f.label :job_category 
+  
+  = f.text_field :job_category 
+  %br
+  
+  = f.label :working_location 
+  
+  = f.text_field :working_location 
+  %br
+
+  = f.label :address 
+  
+  = f.text_field :address 
+  %br
+  = f.label :longitude 
+  
+  = f.text_field :longitude 
+  %br
+  = f.label :latitude  
+  
+  = f.text_field :latitude  
+  %br
+  
+  = f.label :responsability 
+  
+  = f.text_area :responsability, :rows => 10, :cols => 100 
+  %br
+  
+  = f.label :lowest_education_level 
+  
+  = f.text_field :lowest_education_level 
+  %br
+  
+  = f.label :highest_education_level 
+  
+  = f.text_field :highest_education_level 
+  %br
+  
+  = f.label :age_min 
+  
+  = f.text_field :age_min 
+  %br
+  
+  = f.label :age_max 
+  
+  = f.text_field :age_max 
+  %br
+  
+  = f.label :salary_min 
+  
+  = f.text_field :salary_min 
+  %br
+  = f.label :salary_max 
+  
+  = f.text_field :salary_max 
+  %br
+  = f.check_box :negotiable 
+  %h5 negotiable
+  %br
+  = f.check_box :travel 
+  %h5 travel
+  %br
+  = f.check_box :relocate 
+  %h5 relocate
+  %br
+  = f.submit 
+  

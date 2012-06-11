@@ -1,0 +1,47 @@
+= form_for ([@profile, @profile.educations.build]) do |f|
+  
+  .span-5
+    Country
+  %br
+  .span-18
+    = f.select :country, ["Bolivia", "Chile", "Argentina"], :prompt => "Country:"
+  %br
+  .span-5
+    Education level
+  %br
+  .span-18
+    = f.select :education_level, ["Doctorate(PhD)", "Master's Degree", "College", "HighSchool", "Others"], :prompt => "Select Education Level:"
+  %br
+  
+  .span-5
+    Field of study
+  %br
+  .span-18.last
+    = f.text_field :field_of_study, :size => 20
+  %hr.space
+  
+  .span-5
+    Attended from
+  %br
+  .span-18.last
+    
+    = f.date_select :attended_from
+  %hr.space
+  .span-5
+    Attended to
+  %br
+  .span-18.last    
+    = f.date_select :attended_to
+  %hr.space
+  
+  
+  .span-5
+    Additional notes
+  %br
+  .span-18.last
+    = f.text_area :add_notes, :cols => 55, :rows => 2
+  %hr.space
+  = f.hidden_field :profile_id, :value => @profile.id
+  .span-2.prepend-8
+    = f.submit 'add'
+   

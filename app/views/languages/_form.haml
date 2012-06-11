@@ -1,0 +1,18 @@
+= form_for ([@profile, @profile.languages.build]) do |f|
+  
+  .span-5
+    Language
+  %br
+  .span-18
+    = f.select :language, ["Arabic", "English", "Spanish", "Chinese", "French", "Hindi", "Other"], :prompt => "Language:"
+  %hr.space
+  .span-5
+    Level
+  %br
+  .span-18
+    = f.select :level, ["Conversational", "Average", "Fluent"], :prompt => "Level:"
+  %hr.space
+  = f.hidden_field :profile_id, :value => @profile.id  
+  .span-2.prepend-6
+    = f.submit 'add'
+   

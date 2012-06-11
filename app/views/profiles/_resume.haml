@@ -1,0 +1,162 @@
+
+#main
+  %h1 Your Profile      
+  #profile_selector.activity_streams_type
+    Profile
+    Preferences
+
+  #profile.sel_panel.span-18
+    .display
+      .head
+        %h2.show Daniel, Pariente
+
+        .avatar 
+          = image_tag gravatar_for(@user)
+
+      %table.show
+        %tr
+          %td.header Current salary
+          %td.sal 
+            $200.00
+            .example per month 
+        %tr
+          %td.header Expected salary
+          %td.sal
+            $600.00 - $2,000.00 
+            .example per month
+            %br
+            $30,000.00 - $200,000.00
+            .example per annum            
+        %tr
+          %td.header Phone numbers
+          %td
+            %ul
+              %li 79783638 (Mobile)
+                                          
+              %li 4415470 (Home)
+                          
+        %tr
+          %td.header Addresses
+          %td
+            Barrio Profesional #229
+                      
+        %tr
+          %td.header Legal identifiers
+          %td
+            6535500 (National ID)
+             
+        %tr
+          %td.header Instant messengers
+          %td
+            dan_ownzzz@hotmail.com (MSN)
+                      
+       
+        %tr
+          %td.header Websites
+          %td
+            = link_to "jobster.heroku.com", "jobster.heroku.com"
+        
+        %tr
+          %td.header Nationality
+          %td Bolivian
+        
+        %tr
+          %td.header Work Passes and Visa
+          %td Employment Pass
+        
+        %tr
+          %td.header Permanent resident
+          %td Bolivia
+        
+        %tr
+          %td.header Availability
+          %td Available in Immediate notice
+        
+        %tr
+          %td.header Travel
+          %td Unable to travel
+        
+        %tr
+          %td.header Relocate
+          %td Unable to relocate
+        %tr
+          %td.header Shift
+          %td Unable to work on shift
+
+      %table.user_desc 
+        %tr
+          %td Korean
+          %td Male
+          
+          %td Bolivian
+          %td
+            25 years old 
+            .born December 23, 1986
+          %td  
+            .end Single
+        
+    
+    .resume
+      .title Educations &amp; Professional Certifications
+      = link_to "+ add education", "/profiles/#{params[:id]}/education/new" 
+      .section
+        %h2.title
+          College &mdash; Ing. de Sistemas
+        .desc
+          San Simon, Singapore, Feb 05 - Nov 10
+          
+          
+        
+      .section
+        %h2.title
+          Secondary &mdash; School Subjects
+        .desc
+          La Salle, Bolivia, Nov 93 - Nov 04
+              
+      .title Experiences
+      = link_to "+ add experiences", "/profiles/#{params[:id]}/experience/new"
+      .section
+        %h2.title
+          Jala, Bolivia
+        .desc
+          dev, Nov 10 - Nov 11
+      %p 
+        Industry: Computer Software
+      %p
+        Salary: $0.00
+              
+      .title Competencies
+      = link_to "+ add competencies", "/profiles/#{params[:id]}/competency/new"
+      .section
+        %h2 Ruby
+        .desc Expert level
+      .section 
+        %h2 Rails
+        .desc Expert level
+          
+        .textilize
+          %p Many apps developed
+              
+      .title Languages
+      = link_to "+ add languages", "/profiles/#{params[:id]}/language/new"
+      .section
+        %h2 Spanish
+        .desc Fluent
+      .section
+        %h2 English
+        .desc Fluent
+              
+      .title Professional references
+      = link_to "+ add references", "/profiles/#{params[:id]}/reference/new"
+      .section 
+        %h2 Julieta
+        .desc Works for Junee as Dev Manager
+              
+      .title Publications
+      %p You have not provided any publications.
+
+  
+
+    
+
+    
